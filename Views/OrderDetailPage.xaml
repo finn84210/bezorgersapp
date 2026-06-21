@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.OrderDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Route"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Grid Padding="18,12" ColumnDefinitions="48,*,48" HeightRequest="68">
+            <Label
+                FontSize="34"
+                Text="Terug"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="BackTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Route"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="2"
+                FontSize="28"
+                HorizontalTextAlignment="Center"
+                Text="..."
+                VerticalTextAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="1" BackgroundColor="#F3F4F6">
+            <BoxView
+                HeightRequest="2"
+                Rotation="22"
+                Color="#111827"
+                WidthRequest="520" />
+            <BoxView
+                HeightRequest="2"
+                Rotation="-18"
+                Color="#111827"
+                WidthRequest="520" />
+            <BoxView
+                HeightRequest="2"
+                Rotation="72"
+                Color="#111827"
+                WidthRequest="520" />
+            <Border
+                Margin="250,88,0,0"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Stroke="#111827"
+                StrokeShape="RoundRectangle 15"
+                VerticalOptions="Start"
+                WidthRequest="30">
+                <Label HorizontalTextAlignment="Center" Text="1" VerticalTextAlignment="Center" />
+            </Border>
+            <Border
+                Margin="160,230,0,0"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Stroke="#111827"
+                StrokeShape="RoundRectangle 15"
+                VerticalOptions="Start"
+                WidthRequest="30">
+                <Label HorizontalTextAlignment="Center" Text="2" VerticalTextAlignment="Center" />
+            </Border>
+            <Border
+                Margin="270,310,0,0"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Stroke="#111827"
+                StrokeShape="RoundRectangle 15"
+                VerticalOptions="Start"
+                WidthRequest="30">
+                <Label HorizontalTextAlignment="Center" Text="3" VerticalTextAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <ScrollView Grid.Row="2" MaximumHeightRequest="360">
+            <Border
+                Padding="18"
+                BackgroundColor="#FFFFFF"
+                Stroke="#111827"
+                StrokeShape="RoundRectangle 12,12,0,0">
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label FontSize="19" Text="Volgende stop" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                Text="{Binding Order.Address}" />
+                            <Label
+                                FontSize="17"
+                                Text="{Binding Order.PostalCode, StringFormat='{0} Amsterdam'}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding Order.Source, StringFormat='Bron: {0}'}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding Order.ExternalReference, StringFormat='Referentie: {0}'}" />
+                        </VerticalStackLayout>
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="8,1 km"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+                    <Button
+                        Padding="14"
+                        BackgroundColor="#FFFFFF"
+                        BorderColor="#111827"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        FontSize="19"
+                        Text="Start navigatie"
+                        TextColor="#111827" />
+
+                    <Picker
+                        FontSize="17"
+                        ItemsSource="{Binding StatusOptions}"
+                        SelectedItem="{Binding SelectedStatus}" />
+
+                    <Button
+                        Padding="14"
+                        BackgroundColor="#111827"
+                        Command="{Binding UpdateStatusCommand}"
+                        CornerRadius="8"
+                        FontSize="18"
+                        Text="Status opslaan"
+                        TextColor="White" />
+
+                    <Button
+                        Padding="14"
+                        BackgroundColor="#FFFFFF"
+                        BorderColor="#111827"
+                        BorderWidth="1"
+                        Command="{Binding GetLocationCommand}"
+                        CornerRadius="8"
+                        Text="GPS-locatie ophalen"
+                        TextColor="#111827" />
+
+                    <Label FontSize="15" Text="{Binding LocationText}" />
+
+                    <Button
+                        Padding="14"
+                        BackgroundColor="#FFFFFF"
+                        BorderColor="#111827"
+                        BorderWidth="1"
+                        Command="{Binding TakePhotoCommand}"
+                        CornerRadius="8"
+                        Text="Foto maken als bewijs"
+                        TextColor="#111827" />
+
+                    <Image
+                        Aspect="AspectFill"
+                        BackgroundColor="#E5E7EB"
+                        HeightRequest="160"
+                        Source="{Binding DeliveryPhoto}" />
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
+    </Grid>
+</ContentPage>

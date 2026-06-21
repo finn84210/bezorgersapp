@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.MessagesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Berichten"
+    Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout Padding="22" Spacing="18">
+        <Grid ColumnDefinitions="48,*,48" HeightRequest="58">
+            <Label FontSize="16" Text="Menu" VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Berichten"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="2"
+                FontSize="28"
+                HorizontalTextAlignment="Center"
+                Text="!"
+                VerticalTextAlignment="Center" />
+        </Grid>
+
+        <Border
+            BackgroundColor="#FFFFFF"
+            Stroke="#111827"
+            StrokeShape="RoundRectangle 8">
+            <VerticalStackLayout>
+                <Grid Padding="14" ColumnDefinitions="44,*,Auto">
+                    <Label FontSize="20" Text="( )" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label FontAttributes="Bold" FontSize="18" Text="Support" />
+                        <Label FontSize="15" Text="zorg dat je vandaag optijd bent." />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" FontSize="14" Text="9:30" />
+                </Grid>
+                <BoxView HeightRequest="1" Color="#111827" />
+
+                <Grid Padding="14" ColumnDefinitions="44,*,Auto">
+                    <Label FontSize="20" Text="( )" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label FontAttributes="Bold" FontSize="18" Text="Klant - Bezemweg 12" />
+                        <Label FontSize="15" Text="Ik ben niet thuis, leg het maar in de tuin." />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" FontSize="14" Text="7:30" />
+                </Grid>
+                <BoxView HeightRequest="1" Color="#111827" />
+
+                <Grid Padding="14" ColumnDefinitions="44,*,Auto">
+                    <Label FontSize="20" Text="( )" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label FontAttributes="Bold" FontSize="18" Text="Teamleider" />
+                        <Label FontSize="15" Text="kan je een uurtje eerder beginnen?" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" FontSize="14" Text="Gisteren" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

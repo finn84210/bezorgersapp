@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.EarningsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Verdiensten">
+
+    <VerticalStackLayout Padding="22" Spacing="22">
+        <Grid ColumnDefinitions="48,*,48" HeightRequest="58">
+
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Verdiensten"
+                VerticalTextAlignment="Center" />
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*,*" HeightRequest="46">
+            <Border BackgroundColor="#111827" Stroke="#111827" StrokeShape="RoundRectangle 8,0,0,8">
+                <Label HorizontalTextAlignment="Center" Text="Vandaag" TextColor="White" VerticalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Column="1" Stroke="#111827">
+                <Label HorizontalTextAlignment="Center" Text="Week" VerticalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Column="2" Stroke="#111827" StrokeShape="RoundRectangle 0,8,8,0">
+                <Label HorizontalTextAlignment="Center" Text="Maand" VerticalTextAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+            <Label
+                FontSize="42"
+                HorizontalTextAlignment="Center"
+                Text="{Binding TotalEarned, StringFormat='EUR {0:F2}'}" />
+            <Label
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                Text="Totaal verdiend" />
+        </VerticalStackLayout>
+
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="16">
+            <Label FontSize="20" Text="Bezorgingen" />
+            <Label Grid.Column="1" FontSize="20" Text="{Binding DeliveryEarned, StringFormat='EUR {0:F2}'}" />
+            <BoxView Grid.Row="0" Grid.ColumnSpan="2" Margin="0,36,0,0" HeightRequest="1" Color="#111827" />
+
+            <Label Grid.Row="1" FontSize="20" Text="Bonussen" />
+            <Label Grid.Row="1" Grid.Column="1" FontSize="20" Text="{Binding BonusEarned, StringFormat='EUR {0:F2}'}" />
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2" Margin="0,36,0,0" HeightRequest="1" Color="#111827" />
+
+            <Label Grid.Row="2" FontSize="20" Text="Tips" />
+            <Label Grid.Row="2" Grid.Column="1" FontSize="20" Text="{Binding TipsEarned, StringFormat='EUR {0:F2}'}" />
+            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Margin="0,36,0,0" HeightRequest="1" Color="#111827" />
+        </Grid>
+
+        <Button
+            Margin="0,32,0,0"
+            Padding="16"
+            BackgroundColor="#FFFFFF"
+            BorderColor="#111827"
+            BorderWidth="1"
+            CornerRadius="8"
+            FontSize="22"
+            Text="Goed bezig!"
+            TextColor="#111827" />
+    </VerticalStackLayout>
+</ContentPage>

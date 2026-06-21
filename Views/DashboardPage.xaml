@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Overzicht"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="18">
+            <Grid ColumnDefinitions="48,*,48" HeightRequest="58">
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="Menu"
+                    VerticalTextAlignment="Center"
+                    BackgroundColor="#258cfb"/>
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="28"
+                    HorizontalTextAlignment="Center"
+                    Text="Goedemorgen!"
+                    VerticalTextAlignment="Center" 
+                    BackgroundColor="#258cfb"/>
+                <Label
+                    Grid.Column="2"
+                    FontSize="28"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    VerticalTextAlignment="Center"
+                    BackgroundColor="#258cfb"
+                    />
+            </Grid>
+
+            <Border
+                Padding="20"
+                BackgroundColor="#FFFFFF"
+                Stroke="#111827"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 8">
+                <VerticalStackLayout Spacing="18">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="                      Vandaag"/>
+
+                    <Grid ColumnDefinitions="58,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="18">
+                        <Label
+                            FontSize="24"
+                            Text=""
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="28"
+                            Text="{Binding DeliveryCount, StringFormat='{0} bezorgingen'}"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Row="1"
+                            FontSize="22"
+                            Text=""
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="28"
+                            Text="{Binding TotalEarned, StringFormat='EUR {0:F2} verdiensten'}"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Row="2"
+                            FontSize="24"
+                            Text=""
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            FontSize="24"
+                            Text="8u 43m actief"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button
+                Padding="16"
+                BackgroundColor="#FFFFFF"
+                BorderColor="#111827"
+                BorderWidth="1"
+                Command="{Binding GoToTasksCommand}"
+                CornerRadius="8"
+                FontSize="20"
+                Text="Ga in dienst"
+                TextColor="#111827" />
+
+            <Button
+                Padding="16"
+                BackgroundColor="#FFFFFF"
+                BorderColor="#111827"
+                BorderWidth="1"
+                CornerRadius="8"
+                FontSize="20"
+                Text="Ga uit dienst"
+                TextColor="#111827" />
+
+            <Button
+                Padding="16"
+                BackgroundColor="#FFFFFF"
+                BorderColor="#111827"
+                BorderWidth="1"
+                Command="{Binding GoToEarningsCommand}"
+                CornerRadius="8"
+                FontSize="20"
+                Text="Bekijk verdiensten"
+                TextColor="#111827" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

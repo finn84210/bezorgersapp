@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.OrdersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Taken"
+    Shell.NavBarIsVisible="False">
+
+    <Grid Padding="18" RowDefinitions="Auto,*">
+        <Grid ColumnDefinitions="auto,*,48" HeightRequest="58">
+            <Button
+                FontSize="16"
+                Text="Menu"
+                Command="{Binding x:Type Contentpage}"/>
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Mijn Taken"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="2"
+                FontSize="28"
+                HorizontalTextAlignment="Center"
+                Text="!"
+                VerticalTextAlignment="Center" />
+        </Grid>
+
+        <RefreshView
+            Grid.Row="1"
+            Command="{Binding LoadOrdersCommand}"
+            IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Orders}">
+                <CollectionView.EmptyView>
+                    <Label
+                        Margin="0,32"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Message}" />
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="0,0,0,18"
+                            Padding="16"
+                            BackgroundColor="#FFFFFF"
+                            Stroke="#111827"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8">
+                            <Grid ColumnDefinitions="*,92" RowDefinitions="Auto,Auto,Auto">
+                                <HorizontalStackLayout Spacing="10">
+                                    <Border
+                                        HeightRequest="32"
+                                        Stroke="#111827"
+                                        StrokeShape="RoundRectangle 16"
+                                        WidthRequest="32">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Id}"
+                                            VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="21"
+                                            Text="{Binding Address}" />
+                                        <Label
+                                            FontSize="18"
+                                            Text="{Binding PostalCode, StringFormat='{0}  Amsterdam'}" />
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding Source, StringFormat='Bron: {0}'}" />
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+
+                                <Button
+                                    Grid.Column="1"
+                                    BackgroundColor="#FFFFFF"
+                                    BorderColor="#111827"
+                                    BorderWidth="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenOrderCommand}"
+                                    CommandParameter="{Binding .}"
+                                    CornerRadius="8"
+                                    FontSize="16"
+                                    Text="> Route"
+                                    TextColor="#111827" />
+
+                                <HorizontalStackLayout
+                                    Grid.Row="2"
+                                    Margin="0,28,0,0"
+                                    Spacing="12">
+                                    <Label FontSize="20" Text="[ ]" />
+                                    <VerticalStackLayout Spacing="0">
+                                        <Label
+                                            FontSize="19"
+                                            Text="{Binding PackageSize}"
+                                            VerticalTextAlignment="Center" />
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding ExternalReference}" />
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="19"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding Fee, StringFormat='EUR {0:F2}'}"
+                                    VerticalTextAlignment="End" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>
