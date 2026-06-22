@@ -63,12 +63,22 @@ public class OrderService
 
     public Task<List<Order>> GetOrdersAsync()
     {
+        foreach (var order in _orders)
+        {
+            ApplySavedState(order);
+        }
+
         return Task.FromResult(_orders);
     }
 
     public Task<Order?> GetOrderByIdAsync(int id)
     {
         var order = _orders.FirstOrDefault(order => order.Id == id);
+        if (order is not null)
+        {
+            ApplySavedState(order);
+        }
+
         return Task.FromResult(order);
     }
 
@@ -81,8 +91,43 @@ public class OrderService
             return Task.FromResult(false);
         }
 
-        // Status lokaal aanpassen, zodat de app meteen reageert.
         order.Status = status;
+        Preferences.Set(StatusKey(id), status);
         return Task.FromResult(true);
     }
+
+    public Task SaveLocationAsync(int id, string locationText)
+    {
+        var order = _orders.FirstOrDefault(order => order.Id == id);
+        if (order is not null)
+        {
+            order.LocationText = locationText;
+            Preferences.Set(LocationKey(id), locationText);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public Task SaveDeliveryPhotoAsync(int id, string photoPath)
+    {
+        var order = _orders.FirstOrDefault(order => order.Id == id);
+        if (order is not null)
+        {
+            order.DeliveryPhotoPath = photoPath;
+            Preferences.Set(PhotoKey(id), photoPath);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private static void ApplySavedState(Order order)
+    {
+        order.Status = Preferences.Get(StatusKey(order.Id), order.Status);
+        order.LocationText = Preferences.Get(LocationKey(order.Id), order.LocationText);
+        order.DeliveryPhotoPath = Preferences.Get(PhotoKey(order.Id), order.DeliveryPhotoPath);
+    }
+
+    private static string StatusKey(int id) => $"order_{id}_status";
+    private static string LocationKey(int id) => $"order_{id}_location";
+    private static string PhotoKey(int id) => $"order_{id}_photo";
 }

@@ -16,4 +16,6 @@ public class Order
     public DateTime? SentToDeliveryAt { get; set; }
     public DateTime ExpectedDeliveryTime { get; set; }
     public string Notes { get; set; } = string.Empty;
+    public string LocationText { get; set; } = string.Empty;
+    public string DeliveryPhotoPath { get; set; } = string.Empty;
 }

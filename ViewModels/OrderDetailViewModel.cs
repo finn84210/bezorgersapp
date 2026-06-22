@@ -83,6 +83,12 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
             }
 
             SelectedStatus = Order.Status;
+            LocationText = string.IsNullOrWhiteSpace(Order.LocationText)
+                ? "Nog geen locatie opgehaald."
+                : Order.LocationText;
+            DeliveryPhoto = string.IsNullOrWhiteSpace(Order.DeliveryPhotoPath)
+                ? null
+                : ImageSource.FromFile(Order.DeliveryPhotoPath);
         }
         catch
         {
@@ -147,6 +153,11 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
             LocationText = location is null
                 ? "Locatie kon niet worden opgehaald."
                 : $"Latitude: {location.Latitude:F6}, Longitude: {location.Longitude:F6}";
+
+            if (Order is not null && location is not null)
+            {
+                await _orderService.SaveLocationAsync(Order.Id, LocationText);
+            }
         }
         catch
         {
@@ -174,6 +185,10 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
             if (photo is not null)
             {
                 DeliveryPhoto = ImageSource.FromFile(photo.FullPath);
+                if (Order is not null)
+                {
+                    await _orderService.SaveDeliveryPhotoAsync(Order.Id, photo.FullPath);
+                }
             }
         }
         catch

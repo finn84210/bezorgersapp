@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.CustomerPortalPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Klant">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="18">
+            <Label FontAttributes="Bold" FontSize="28" Text="Klantomgeving" />
+
+            <Border Padding="14" Stroke="#111827" StrokeShape="RoundRectangle 8">
+                <VerticalStackLayout Spacing="10">
+                    <Label FontAttributes="Bold" FontSize="18" Text="Account maken" />
+                    <Entry Placeholder="Naam" Text="{Binding Name}" />
+                    <Entry Keyboard="Email" Placeholder="E-mail" Text="{Binding Email}" />
+                    <Entry IsPassword="True" Placeholder="Wachtwoord" Text="{Binding Password}" />
+                    <Button Command="{Binding RegisterCommand}" Text="Account aanmaken" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Producten" />
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,8" ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout>
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label Text="{Binding Price, StringFormat='EUR {0:F2}'}" />
+                                <Label Text="{Binding Stock, StringFormat='Voorraad: {0}'}" />
+                            </VerticalStackLayout>
+                            <Button
+                                Grid.Column="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddToCartCommand}"
+                                CommandParameter="{Binding .}"
+                                Text="Toevoegen" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Winkelwagen" />
+            <CollectionView ItemsSource="{Binding Cart}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,8" ColumnDefinitions="*,Auto">
+                            <Label Text="{Binding Name}" VerticalTextAlignment="Center" />
+                            <Button
+                                Grid.Column="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveFromCartCommand}"
+                                CommandParameter="{Binding .}"
+                                Text="Verwijderen" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label FontAttributes="Bold" Text="{Binding TotalPrice, StringFormat='Totaal: EUR {0:F2}'}" />
+            <Button Command="{Binding PlaceOrderCommand}" Text="Bestellen" />
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Orderhistorie" />
+            <CollectionView ItemsSource="{Binding OrderHistory}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,10" Padding="12" Stroke="#111827" StrokeShape="RoundRectangle 8">
+                            <VerticalStackLayout>
+                                <Label FontAttributes="Bold" Text="{Binding Id, StringFormat='Bestelling #{0}'}" />
+                                <Label Text="{Binding ProductSummary}" />
+                                <Label Text="{Binding TotalPrice, StringFormat='EUR {0:F2}'}" />
+                                <Label Text="{Binding Status, StringFormat='Status: {0}'}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding Message}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

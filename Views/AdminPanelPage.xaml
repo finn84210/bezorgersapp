@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.AdminPanelPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Admin">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="18">
+            <Label FontAttributes="Bold" FontSize="28" Text="Adminpanel" />
+
+            <Border Padding="14" Stroke="#111827" StrokeShape="RoundRectangle 8">
+                <VerticalStackLayout Spacing="10">
+                    <Label FontAttributes="Bold" FontSize="18" Text="Product toevoegen" />
+                    <Entry Placeholder="Productnaam" Text="{Binding ProductName}" />
+                    <Entry Keyboard="Numeric" Placeholder="Prijs" Text="{Binding ProductPrice}" />
+                    <Entry Keyboard="Numeric" Placeholder="Voorraad" Text="{Binding ProductStock}" />
+                    <Button Command="{Binding AddProductCommand}" Text="Product toevoegen" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Producten" />
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,8" ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout>
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label Text="{Binding Price, StringFormat='EUR {0:F2}'}" />
+                                <Label Text="{Binding Stock, StringFormat='Voorraad: {0}'}" />
+                            </VerticalStackLayout>
+                            <Button
+                                Grid.Column="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveProductCommand}"
+                                CommandParameter="{Binding .}"
+                                Text="Verwijderen" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Klanten" />
+            <CollectionView ItemsSource="{Binding Customers}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="0,6">
+                            <Label FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label Text="{Binding Email}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label FontAttributes="Bold" FontSize="20" Text="Bestellingen" />
+            <CollectionView ItemsSource="{Binding Orders}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,10" Padding="12" Stroke="#111827" StrokeShape="RoundRectangle 8">
+                            <VerticalStackLayout Spacing="8">
+                                <Label FontAttributes="Bold" Text="{Binding CustomerName}" />
+                                <Label Text="{Binding ProductSummary}" />
+                                <Label Text="{Binding TotalPrice, StringFormat='EUR {0:F2}'}" />
+                                <Label Text="{Binding Status, StringFormat='Status: {0}'}" />
+                                <HorizontalStackLayout Spacing="8">
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ProcessOrderCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Verwerken" />
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SendOrderCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Naar bezorger" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding Message}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

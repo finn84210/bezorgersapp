@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="bezorgersapp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Inloggen"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18" VerticalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+                FontSize="30"
+                Text="Matrix Inc."
+                HorizontalTextAlignment="Center" />
+            <Label
+                FontSize="20"
+                Text="Inloggen"
+                HorizontalTextAlignment="Center" />
+
+            <Entry
+                Keyboard="Email"
+                Placeholder="E-mail"
+                Text="{Binding Email}" />
+            <Entry
+                IsPassword="True"
+                Placeholder="Wachtwoord"
+                Text="{Binding Password}" />
+
+            <Button
+                BackgroundColor="#111827"
+                Command="{Binding LoginCommand}"
+                CornerRadius="8"
+                Text="Inloggen"
+                TextColor="White" />
+
+            <Label
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Message}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
