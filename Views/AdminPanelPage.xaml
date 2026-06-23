@@ -31,13 +31,32 @@
                             </VerticalStackLayout>
                             <Button
                                 Grid.Column="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveProductCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShowProductDetailsCommand}"
                                 CommandParameter="{Binding .}"
-                                Text="Verwijderen" />
+                                Text="Details" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Border
+                Padding="14"
+                IsVisible="{Binding HasSelectedProduct}"
+                Stroke="#111827"
+                StrokeShape="RoundRectangle 8">
+                <VerticalStackLayout Spacing="8">
+                    <Label FontAttributes="Bold" FontSize="18" Text="Productdetails" />
+                    <Label Text="{Binding SelectedProduct.Name, StringFormat='Naam: {0}'}" />
+                    <Label Text="{Binding SelectedProduct.Price, StringFormat='Prijs: EUR {0:F2}'}" />
+                    <Label Text="{Binding SelectedProduct.Stock, StringFormat='Voorraad: {0}'}" />
+                    <Button
+                        BackgroundColor="#7F1D1D"
+                        Command="{Binding RemoveProductCommand}"
+                        CommandParameter="{Binding SelectedProduct}"
+                        Text="Product verwijderen"
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Border>
 
             <Label FontAttributes="Bold" FontSize="20" Text="Klanten" />
             <CollectionView ItemsSource="{Binding Customers}">

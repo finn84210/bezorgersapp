@@ -12,6 +12,7 @@ public class AdminPanelViewModel : BaseViewModel
     private string _productPrice = string.Empty;
     private string _productStock = string.Empty;
     private string _message = string.Empty;
+    private Product? _selectedProduct;
 
     public AdminPanelViewModel(StoreService storeService)
     {
@@ -21,6 +22,7 @@ public class AdminPanelViewModel : BaseViewModel
         Orders = [];
         LoadCommand = new Command(Load);
         AddProductCommand = new Command(AddProduct);
+        ShowProductDetailsCommand = new Command<Product>(ShowProductDetails);
         RemoveProductCommand = new Command<Product>(RemoveProduct);
         ProcessOrderCommand = new Command<CustomerOrder>(order => UpdateOrderStatus(order, "In behandeling"));
         SendOrderCommand = new Command<CustomerOrder>(order => UpdateOrderStatus(order, "Doorgestuurd naar bezorger"));
@@ -54,8 +56,23 @@ public class AdminPanelViewModel : BaseViewModel
         set => SetProperty(ref _message, value);
     }
 
+    public Product? SelectedProduct
+    {
+        get => _selectedProduct;
+        set
+        {
+            if (SetProperty(ref _selectedProduct, value))
+            {
+                OnPropertyChanged(nameof(HasSelectedProduct));
+            }
+        }
+    }
+
+    public bool HasSelectedProduct => SelectedProduct is not null;
+
     public ICommand LoadCommand { get; }
     public ICommand AddProductCommand { get; }
+    public ICommand ShowProductDetailsCommand { get; }
     public ICommand RemoveProductCommand { get; }
     public ICommand ProcessOrderCommand { get; }
     public ICommand SendOrderCommand { get; }
@@ -83,10 +100,20 @@ public class AdminPanelViewModel : BaseViewModel
         Refresh();
     }
 
+    private void ShowProductDetails(Product? product)
+    {
+        SelectedProduct = product;
+        if (product is not null)
+        {
+            Message = $"Details geopend voor {product.Name}.";
+        }
+    }
+
     private void RemoveProduct(Product? product)
     {
         if (product is not null && _storeService.RemoveProduct(product.Id))
         {
+            SelectedProduct = null;
             Message = "Product verwijderd.";
             Refresh();
         }
