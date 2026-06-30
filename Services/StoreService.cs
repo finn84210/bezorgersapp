@@ -25,8 +25,36 @@ public class StoreService
 
         Orders =
         [
-            new CustomerOrder { Id = 1, CustomerId = 1, CustomerName = "Klant", ProductSummary = "Trainingsshirt", TotalPrice = 19.50m, Status = "Nieuw" },
-            new CustomerOrder { Id = 2, CustomerId = 2, CustomerName = "Neo Anderson", ProductSummary = "Blauwe sporttas, Wedstrijdbal", TotalPrice = 56.95m, Status = "In behandeling" }
+            new CustomerOrder
+            {
+                Id = 1,
+                CustomerId = 1,
+                CustomerName = "Klant",
+                ProductSummary = "Trainingsshirt",
+                TotalPrice = 19.50m,
+                Status = "Nieuw",
+                Address = "Europalaan 45",
+                PostalCode = "1056 CP",
+                Notes = "Bel aan bij de hoofdingang.",
+                Packages = [new DeliveryPackage { Id = 1, Description = "Trainingsshirt - maat M" }]
+            },
+            new CustomerOrder
+            {
+                Id = 2,
+                CustomerId = 2,
+                CustomerName = "Neo Anderson",
+                ProductSummary = "Blauwe sporttas, Wedstrijdbal",
+                TotalPrice = 56.95m,
+                Status = "In behandeling",
+                Address = "Bezemweg 12",
+                PostalCode = "1051 AP",
+                Notes = "Pakket mag in de tuin worden gelegd.",
+                Packages =
+                [
+                    new DeliveryPackage { Id = 1, Description = "Blauwe sporttas" },
+                    new DeliveryPackage { Id = 2, Description = "Wedstrijdbal" }
+                ]
+            }
         ];
     }
 
@@ -77,7 +105,15 @@ public class StoreService
             CustomerName = customer.Name,
             ProductSummary = string.Join(", ", products.Select(product => product.Name)),
             TotalPrice = products.Sum(product => product.Price),
-            Status = "Nieuw"
+            Status = "Nieuw",
+            Address = "Hovenstraat 112",
+            PostalCode = "1042 GE",
+            Notes = "Klant is alleen na 15:00 thuis.",
+            Packages = products.Select((product, index) => new DeliveryPackage
+            {
+                Id = index + 1,
+                Description = product.Name
+            }).ToList()
         };
 
         Orders.Add(order);
@@ -93,6 +129,39 @@ public class StoreService
         }
 
         order.Status = status;
+        return true;
+    }
+
+    public bool PickOrderForDelivery(int id)
+    {
+        var order = Orders.FirstOrDefault(order => order.Id == id);
+        if (order is null)
+        {
+            return false;
+        }
+
+        order.IsPickedForDelivery = true;
+        order.Status = "Gepickt voor bezorger";
+        order.AssignedVanName = "Mercedes Sprinter 314";
+        order.AssignedVanLicensePlate = "V-842-FN";
+        order.AssignedVanLoadingZone = "Laadpoort B";
+        order.AssignedVanFuelLevel = "82% diesel";
+        return true;
+    }
+
+    public bool SavePackageCheck(int orderId, int packageId, bool isChecked)
+    {
+        var package = Orders
+            .FirstOrDefault(order => order.Id == orderId)?
+            .Packages
+            .FirstOrDefault(package => package.Id == packageId);
+
+        if (package is null)
+        {
+            return false;
+        }
+
+        package.IsChecked = isChecked;
         return true;
     }
 }

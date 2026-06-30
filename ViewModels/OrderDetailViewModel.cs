@@ -28,6 +28,7 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
         UpdateStatusCommand = new Command(async () => await UpdateStatusAsync());
         GetLocationCommand = new Command(async () => await GetLocationAsync());
         TakePhotoCommand = new Command(async () => await TakePhotoAsync());
+        OpenMapsCommand = new Command(async () => await OpenMapsAsync());
     }
 
     public Order? Order
@@ -60,6 +61,18 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
     public ICommand UpdateStatusCommand { get; }
     public ICommand GetLocationCommand { get; }
     public ICommand TakePhotoCommand { get; }
+    public ICommand OpenMapsCommand { get; }
+
+    public string PackageCheckText
+    {
+        get
+        {
+            var packages = Order?.Packages ?? [];
+            return packages.Count == 0
+                ? "Geen pakketten gekoppeld."
+                : $"{packages.Count(package => package.IsChecked)} van {packages.Count} pakketten gecontroleerd";
+        }
+    }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -89,6 +102,7 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
             DeliveryPhoto = string.IsNullOrWhiteSpace(Order.DeliveryPhotoPath)
                 ? null
                 : ImageSource.FromFile(Order.DeliveryPhotoPath);
+            OnPropertyChanged(nameof(PackageCheckText));
         }
         catch
         {
@@ -195,5 +209,28 @@ public class OrderDetailViewModel : BaseViewModel, IQueryAttributable
         {
             await Shell.Current.DisplayAlertAsync("Foto mislukt", "De foto kon niet worden gemaakt.", "OK");
         }
+    }
+
+    public async Task SavePackageCheckAsync(DeliveryPackage package, bool isChecked)
+    {
+        if (Order is null)
+        {
+            return;
+        }
+
+        package.IsChecked = isChecked;
+        await _orderService.SavePackageCheckAsync(Order.Id, package.Id, isChecked);
+        OnPropertyChanged(nameof(PackageCheckText));
+    }
+
+    private async Task OpenMapsAsync()
+    {
+        if (Order is null)
+        {
+            return;
+        }
+
+        var query = Uri.EscapeDataString(Order.FullAddress);
+        await Launcher.Default.OpenAsync($"https://www.google.com/maps/search/?api=1&query={query}");
     }
 }

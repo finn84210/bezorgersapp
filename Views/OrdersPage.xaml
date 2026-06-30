@@ -6,18 +6,18 @@
     Title="Taken"
     Shell.NavBarIsVisible="False">
 
-    <Grid Padding="18" RowDefinitions="Auto,*">
-        <Grid ColumnDefinitions="auto,*,48" HeightRequest="58">
-            <Button
+    <Grid Padding="18" RowDefinitions="Auto,*" BackgroundColor="#F3F4F6">
+        <Grid ColumnDefinitions="48,*,48" HeightRequest="58">
+            <Label
                 FontSize="16"
-                Text="Menu"
-                Command="{Binding x:Type Contentpage}"/>
+                Text=""
+                VerticalTextAlignment="Center" />
             <Label
                 Grid.Column="1"
                 FontAttributes="Bold"
                 FontSize="30"
                 HorizontalTextAlignment="Center"
-                Text="Mijn Taken"
+                Text="Mijn ritten"
                 VerticalTextAlignment="Center" />
             <Label
                 Grid.Column="2"
@@ -86,7 +86,7 @@
                                     CommandParameter="{Binding .}"
                                     CornerRadius="8"
                                     FontSize="16"
-                                    Text="> Route"
+                                    Text="Details"
                                     TextColor="#111827" />
 
                                 <HorizontalStackLayout
@@ -95,13 +95,13 @@
                                     Spacing="12">
                                     <Label FontSize="20" Text="[ ]" />
                                     <VerticalStackLayout Spacing="0">
-                                        <Label
-                                            FontSize="19"
-                                            Text="{Binding PackageSize}"
-                                            VerticalTextAlignment="Center" />
+                                        <Label FontSize="19" Text="{Binding PackageSize}" />
                                         <Label
                                             FontSize="13"
-                                            Text="{Binding ExternalReference}" />
+                                            Text="{Binding VanLicensePlate, StringFormat='Bus: {0}'}" />
+                                        <Label
+                                            FontSize="13"
+                                            Text="{Binding VanLoadingZone, StringFormat='Ophalen: {0}'}" />
                                     </VerticalStackLayout>
                                 </HorizontalStackLayout>
 

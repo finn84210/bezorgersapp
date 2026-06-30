@@ -78,8 +78,10 @@
                             <VerticalStackLayout Spacing="8">
                                 <Label FontAttributes="Bold" Text="{Binding CustomerName}" />
                                 <Label Text="{Binding ProductSummary}" />
+                                <Label Text="{Binding Address, StringFormat='Adres: {0}'}" />
                                 <Label Text="{Binding TotalPrice, StringFormat='EUR {0:F2}'}" />
                                 <Label Text="{Binding Status, StringFormat='Status: {0}'}" />
+                                <Label Text="{Binding AssignedVanName, StringFormat='Bus: {0}'}" />
                                 <HorizontalStackLayout Spacing="8">
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ProcessOrderCommand}"
@@ -88,7 +90,7 @@
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SendOrderCommand}"
                                         CommandParameter="{Binding .}"
-                                        Text="Naar bezorger" />
+                                        Text="Pick voor bezorger" />
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>

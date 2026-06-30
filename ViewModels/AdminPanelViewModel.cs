@@ -25,7 +25,7 @@ public class AdminPanelViewModel : BaseViewModel
         ShowProductDetailsCommand = new Command<Product>(ShowProductDetails);
         RemoveProductCommand = new Command<Product>(RemoveProduct);
         ProcessOrderCommand = new Command<CustomerOrder>(order => UpdateOrderStatus(order, "In behandeling"));
-        SendOrderCommand = new Command<CustomerOrder>(order => UpdateOrderStatus(order, "Doorgestuurd naar bezorger"));
+        SendOrderCommand = new Command<CustomerOrder>(PickOrderForDelivery);
     }
 
     public ObservableCollection<Product> Products { get; }
@@ -124,6 +124,15 @@ public class AdminPanelViewModel : BaseViewModel
         if (order is not null && _storeService.UpdateOrderStatus(order.Id, status))
         {
             Message = "Bestelstatus aangepast.";
+            Refresh();
+        }
+    }
+
+    private void PickOrderForDelivery(CustomerOrder? order)
+    {
+        if (order is not null && _storeService.PickOrderForDelivery(order.Id))
+        {
+            Message = "Bestelling gepickt en zichtbaar gezet voor de bezorger.";
             Refresh();
         }
     }

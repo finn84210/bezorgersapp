@@ -18,4 +18,10 @@ public class Order
     public string Notes { get; set; } = string.Empty;
     public string LocationText { get; set; } = string.Empty;
     public string DeliveryPhotoPath { get; set; } = string.Empty;
+    public string VanName { get; set; } = string.Empty;
+    public string VanLicensePlate { get; set; } = string.Empty;
+    public string VanLoadingZone { get; set; } = string.Empty;
+    public string VanFuelLevel { get; set; } = string.Empty;
+    public List<DeliveryPackage> Packages { get; set; } = [];
+    public string FullAddress => $"{Address}, {PostalCode} {City}";
 }
