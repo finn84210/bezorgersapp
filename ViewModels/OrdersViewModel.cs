@@ -51,7 +51,7 @@ public class OrdersViewModel : BaseViewModel
             }
 
             Message = Orders.Count == 0
-                ? "Er zijn op dit moment geen bestellingen."
+                ? "Er zijn nog geen demo-bestellingen voor de bezorgapp."
                 : string.Empty;
         }
         catch

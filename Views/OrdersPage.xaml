@@ -17,7 +17,7 @@
                 FontAttributes="Bold"
                 FontSize="30"
                 HorizontalTextAlignment="Center"
-                Text="Mijn ritten"
+                Text="Demo ritten"
                 VerticalTextAlignment="Center" />
             <Label
                 Grid.Column="2"
@@ -73,7 +73,7 @@
                                             Text="{Binding PostalCode, StringFormat='{0}  Amsterdam'}" />
                                         <Label
                                             FontSize="14"
-                                            Text="{Binding Source, StringFormat='Bron: {0}'}" />
+                                            Text="{Binding Status}" />
                                     </VerticalStackLayout>
                                 </HorizontalStackLayout>
 
