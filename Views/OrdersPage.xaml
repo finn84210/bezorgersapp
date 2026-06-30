@@ -6,113 +6,119 @@
     Title="Taken"
     Shell.NavBarIsVisible="False">
 
-    <Grid Padding="18" RowDefinitions="Auto,*" BackgroundColor="#F3F4F6">
-        <Grid ColumnDefinitions="48,*,48" HeightRequest="58">
+    <Grid BackgroundColor="#F3F4F6" RowDefinitions="Auto,*">
+        <VerticalStackLayout Padding="20,18,20,12" Spacing="4">
             <Label
-                FontSize="16"
-                Text=""
-                VerticalTextAlignment="Center" />
-            <Label
-                Grid.Column="1"
                 FontAttributes="Bold"
                 FontSize="30"
-                HorizontalTextAlignment="Center"
-                Text="Demo ritten"
-                VerticalTextAlignment="Center" />
+                Text="Demo ritten" />
             <Label
-                Grid.Column="2"
-                FontSize="28"
-                HorizontalTextAlignment="Center"
-                Text="!"
-                VerticalTextAlignment="Center" />
-        </Grid>
+                FontSize="15"
+                Text="Bestellingen die klaarstaan voor de bezorgapp."
+                TextColor="#4B5563" />
+        </VerticalStackLayout>
 
         <RefreshView
             Grid.Row="1"
             Command="{Binding LoadOrdersCommand}"
             IsRefreshing="{Binding IsBusy}">
-            <CollectionView ItemsSource="{Binding Orders}">
+            <CollectionView ItemsSource="{Binding Orders}" Margin="20,0,20,18">
                 <CollectionView.EmptyView>
-                    <Label
-                        Margin="0,32"
-                        FontSize="16"
-                        HorizontalTextAlignment="Center"
-                        Text="{Binding Message}" />
+                    <Border
+                        Margin="0,20,0,0"
+                        Padding="18"
+                        BackgroundColor="#FFFFFF"
+                        Stroke="#111827"
+                        StrokeShape="RoundRectangle 8">
+                        <Label
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Message}"
+                            TextColor="#4B5563" />
+                    </Border>
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border
-                            Margin="0,0,0,18"
+                            Margin="0,0,0,14"
                             Padding="16"
                             BackgroundColor="#FFFFFF"
                             Stroke="#111827"
                             StrokeThickness="1"
                             StrokeShape="RoundRectangle 8">
-                            <Grid ColumnDefinitions="*,92" RowDefinitions="Auto,Auto,Auto">
-                                <HorizontalStackLayout Spacing="10">
+                            <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="14">
+                                <Grid ColumnDefinitions="42,*,Auto" ColumnSpacing="12">
                                     <Border
-                                        HeightRequest="32"
+                                        BackgroundColor="#111827"
+                                        HeightRequest="36"
                                         Stroke="#111827"
-                                        StrokeShape="RoundRectangle 16"
-                                        WidthRequest="32">
+                                        StrokeShape="RoundRectangle 18"
+                                        WidthRequest="36">
                                         <Label
                                             FontAttributes="Bold"
                                             HorizontalTextAlignment="Center"
                                             Text="{Binding Id}"
+                                            TextColor="White"
                                             VerticalTextAlignment="Center" />
                                     </Border>
 
-                                    <VerticalStackLayout Spacing="2">
+                                    <VerticalStackLayout Grid.Column="1" Spacing="2">
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="21"
+                                            LineBreakMode="TailTruncation"
                                             Text="{Binding Address}" />
                                         <Label
-                                            FontSize="18"
-                                            Text="{Binding PostalCode, StringFormat='{0}  Amsterdam'}" />
-                                        <Label
-                                            FontSize="14"
-                                            Text="{Binding Status}" />
+                                            FontSize="15"
+                                            Text="{Binding FullAddress}"
+                                            TextColor="#4B5563" />
                                     </VerticalStackLayout>
-                                </HorizontalStackLayout>
 
-                                <Button
-                                    Grid.Column="1"
-                                    BackgroundColor="#FFFFFF"
-                                    BorderColor="#111827"
-                                    BorderWidth="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenOrderCommand}"
-                                    CommandParameter="{Binding .}"
-                                    CornerRadius="8"
-                                    FontSize="16"
-                                    Text="Details"
-                                    TextColor="#111827" />
+                                    <Button
+                                        Grid.Column="2"
+                                        BackgroundColor="#FFFFFF"
+                                        BorderColor="#111827"
+                                        BorderWidth="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenOrderCommand}"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="8"
+                                        FontSize="14"
+                                        Padding="12,8"
+                                        Text="Details"
+                                        TextColor="#111827" />
+                                </Grid>
 
-                                <HorizontalStackLayout
-                                    Grid.Row="2"
-                                    Margin="0,28,0,0"
-                                    Spacing="12">
-                                    <Label FontSize="20" Text="[ ]" />
-                                    <VerticalStackLayout Spacing="0">
-                                        <Label FontSize="19" Text="{Binding PackageSize}" />
+                                <Border
+                                    Grid.Row="1"
+                                    Padding="10,6"
+                                    BackgroundColor="#F9FAFB"
+                                    Stroke="#D1D5DB"
+                                    StrokeShape="RoundRectangle 8">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="13"
+                                        Text="{Binding Status}"
+                                        TextColor="#111827" />
+                                </Border>
+
+                                <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="12">
+                                    <VerticalStackLayout Spacing="3">
+                                        <Label FontSize="12" Text="Pakketten" TextColor="#6B7280" />
+                                        <Label FontAttributes="Bold" FontSize="16" Text="{Binding PackageSize}" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                        <Label FontSize="12" Text="Bus" TextColor="#6B7280" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding VanLicensePlate}" />
                                         <Label
                                             FontSize="13"
-                                            Text="{Binding VanLicensePlate, StringFormat='Bus: {0}'}" />
-                                        <Label
-                                            FontSize="13"
-                                            Text="{Binding VanLoadingZone, StringFormat='Ophalen: {0}'}" />
+                                            Text="{Binding VanLoadingZone}"
+                                            TextColor="#4B5563" />
                                     </VerticalStackLayout>
-                                </HorizontalStackLayout>
-
-                                <Label
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontSize="19"
-                                    HorizontalTextAlignment="End"
-                                    Text="{Binding Fee, StringFormat='EUR {0:F2}'}"
-                                    VerticalTextAlignment="End" />
+                                </Grid>
                             </Grid>
                         </Border>
                     </DataTemplate>
