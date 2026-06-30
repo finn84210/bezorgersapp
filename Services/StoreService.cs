@@ -19,8 +19,8 @@ public class StoreService
 
         Customers =
         [
-            new Customer { Id = 1, Name = "Klant", Email = "klant@matrix.nl" },
-            new Customer { Id = 2, Name = "Neo Anderson", Email = "neo@example.nl" }
+            new Customer { Id = 1, Name = "Sophie Janssen", Email = "sophie.janssen@example.nl" },
+            new Customer { Id = 2, Name = "Youssef El Amrani", Email = "youssef.elamrani@example.nl" }
         ];
 
         Orders =
@@ -29,40 +29,69 @@ public class StoreService
             {
                 Id = 1,
                 CustomerId = 1,
-                CustomerName = "Klant",
-                ProductSummary = "Trainingsshirt",
-                TotalPrice = 19.50m,
+                CustomerName = "Sophie Janssen",
+                ProductSummary = "Trainingsshirt, Blauwe sporttas",
+                TotalPrice = 44.45m,
                 Status = "Demo: klaar voor bezorgapp",
-                Address = "Europalaan 45",
-                PostalCode = "1056 CP",
+                Address = "Stationsstraat 18",
+                PostalCode = "6221 BP",
+                City = "Maastricht",
                 IsSentToDeliveryApp = true,
-                AssignedVanName = "Mercedes Sprinter 314",
+                AssignedVanName = "Mercedes Sprinter L2H2",
                 AssignedVanLicensePlate = "V-842-FN",
-                AssignedVanLoadingZone = "Laadpoort B",
+                AssignedVanLoadingZone = "Laadpoort 2",
                 AssignedVanFuelLevel = "82% diesel",
-                Notes = "Bel aan bij de hoofdingang.",
-                Packages = [new DeliveryPackage { Id = 1, Description = "Trainingsshirt - maat M" }]
+                Notes = "Appartement 3B. Aanbellen bij Janssen, pakket niet bij buren afgeven.",
+                Packages =
+                [
+                    new DeliveryPackage { Id = 1, Description = "Doos 1/2 - Trainingsshirt maat M" },
+                    new DeliveryPackage { Id = 2, Description = "Doos 2/2 - Blauwe sporttas" }
+                ]
             },
             new CustomerOrder
             {
                 Id = 2,
                 CustomerId = 2,
-                CustomerName = "Neo Anderson",
-                ProductSummary = "Blauwe sporttas, Wedstrijdbal",
-                TotalPrice = 56.95m,
+                CustomerName = "Youssef El Amrani",
+                ProductSummary = "Wedstrijdbal, Trainingsshirt",
+                TotalPrice = 51.50m,
                 Status = "Demo: klaar voor bezorgapp",
-                Address = "Bezemweg 12",
-                PostalCode = "1051 AP",
+                Address = "Tongerseweg 132",
+                PostalCode = "6214 BD",
+                City = "Maastricht",
                 IsSentToDeliveryApp = true,
-                AssignedVanName = "Mercedes Sprinter 314",
+                AssignedVanName = "Mercedes Sprinter L2H2",
                 AssignedVanLicensePlate = "V-842-FN",
-                AssignedVanLoadingZone = "Laadpoort B",
+                AssignedVanLoadingZone = "Laadpoort 2",
                 AssignedVanFuelLevel = "82% diesel",
-                Notes = "Pakket mag in de tuin worden gelegd.",
+                Notes = "Klant is na 15:00 thuis. Bij geen gehoor bellen op het nummer in de order.",
                 Packages =
                 [
-                    new DeliveryPackage { Id = 1, Description = "Blauwe sporttas" },
-                    new DeliveryPackage { Id = 2, Description = "Wedstrijdbal" }
+                    new DeliveryPackage { Id = 1, Description = "Doos 1/2 - Wedstrijdbal maat 5" },
+                    new DeliveryPackage { Id = 2, Description = "Doos 2/2 - Trainingsshirt maat L" }
+                ]
+            },
+            new CustomerOrder
+            {
+                Id = 3,
+                CustomerId = 1,
+                CustomerName = "Emma Peeters",
+                ProductSummary = "Teamset sokken, Keeperhandschoenen",
+                TotalPrice = 38.90m,
+                Status = "Demo: klaar voor bezorgapp",
+                Address = "Markt 27",
+                PostalCode = "6211 CK",
+                City = "Maastricht",
+                IsSentToDeliveryApp = true,
+                AssignedVanName = "Volkswagen Transporter",
+                AssignedVanLicensePlate = "V-317-LP",
+                AssignedVanLoadingZone = "Laadpoort 1",
+                AssignedVanFuelLevel = "64% diesel",
+                Notes = "Afgeven bij receptie van het kantoor. Laat naam en tijd noteren.",
+                Packages =
+                [
+                    new DeliveryPackage { Id = 1, Description = "Tas 1/2 - Teamset sokken" },
+                    new DeliveryPackage { Id = 2, Description = "Doos 2/2 - Keeperhandschoenen" }
                 ]
             }
         ];
