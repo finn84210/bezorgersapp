@@ -6,16 +6,22 @@
     Title="Taken"
     Shell.NavBarIsVisible="False">
 
-    <Grid BackgroundColor="#F3F4F6" RowDefinitions="Auto,*">
+    <Grid BackgroundColor="#F5F7FB" RowDefinitions="Auto,*">
         <VerticalStackLayout Padding="20,18,20,12" Spacing="4">
             <Label
                 FontAttributes="Bold"
+                FontSize="12"
+                Text="MATRIX INC. BEZORGAPP"
+                TextColor="#2F7D6B" />
+            <Label
+                FontAttributes="Bold"
                 FontSize="30"
-                Text="Demo ritten" />
+                Text="Demo ritten"
+                TextColor="#172033" />
             <Label
                 FontSize="15"
                 Text="Bestellingen die klaarstaan voor de bezorgapp."
-                TextColor="#4B5563" />
+                TextColor="#65758B" />
         </VerticalStackLayout>
 
         <RefreshView
@@ -28,13 +34,16 @@
                         Margin="0,20,0,0"
                         Padding="18"
                         BackgroundColor="#FFFFFF"
-                        Stroke="#111827"
+                        Stroke="#DFE6EF"
                         StrokeShape="RoundRectangle 8">
+                        <Border.Shadow>
+                            <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                        </Border.Shadow>
                         <Label
                             FontSize="16"
                             HorizontalTextAlignment="Center"
                             Text="{Binding Message}"
-                            TextColor="#4B5563" />
+                            TextColor="#65758B" />
                     </Border>
                 </CollectionView.EmptyView>
 
@@ -44,15 +53,18 @@
                             Margin="0,0,0,14"
                             Padding="16"
                             BackgroundColor="#FFFFFF"
-                            Stroke="#111827"
+                            Stroke="#DFE6EF"
                             StrokeThickness="1"
                             StrokeShape="RoundRectangle 8">
+                            <Border.Shadow>
+                                <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                            </Border.Shadow>
                             <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="14">
                                 <Grid ColumnDefinitions="42,*,Auto" ColumnSpacing="12">
                                     <Border
-                                        BackgroundColor="#111827"
+                                        BackgroundColor="#2F7D6B"
                                         HeightRequest="36"
-                                        Stroke="#111827"
+                                        Stroke="#2F7D6B"
                                         StrokeShape="RoundRectangle 18"
                                         WidthRequest="36">
                                         <Label
@@ -67,18 +79,19 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="21"
+                                            TextColor="#172033"
                                             LineBreakMode="TailTruncation"
                                             Text="{Binding Address}" />
                                         <Label
                                             FontSize="15"
                                             Text="{Binding FullAddress}"
-                                            TextColor="#4B5563" />
+                                            TextColor="#65758B" />
                                     </VerticalStackLayout>
 
                                     <Button
                                         Grid.Column="2"
                                         BackgroundColor="#FFFFFF"
-                                        BorderColor="#111827"
+                                        BorderColor="#172033"
                                         BorderWidth="1"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenOrderCommand}"
                                         CommandParameter="{Binding .}"
@@ -86,37 +99,38 @@
                                         FontSize="14"
                                         Padding="12,8"
                                         Text="Details"
-                                        TextColor="#111827" />
+                                        TextColor="#172033" />
                                 </Grid>
 
                                 <Border
                                     Grid.Row="1"
                                     Padding="10,6"
-                                    BackgroundColor="#F9FAFB"
-                                    Stroke="#D1D5DB"
+                                    BackgroundColor="#E5F6EF"
+                                    Stroke="#CBEBDD"
                                     StrokeShape="RoundRectangle 8">
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="13"
                                         Text="{Binding Status}"
-                                        TextColor="#111827" />
+                                        TextColor="#17664F" />
                                 </Border>
 
                                 <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="12">
                                     <VerticalStackLayout Spacing="3">
-                                        <Label FontSize="12" Text="Pakketten" TextColor="#6B7280" />
-                                        <Label FontAttributes="Bold" FontSize="16" Text="{Binding PackageSize}" />
+                                        <Label FontSize="12" Text="Pakketten" TextColor="#65758B" />
+                                        <Label FontAttributes="Bold" FontSize="16" Text="{Binding PackageSize}" TextColor="#172033" />
                                     </VerticalStackLayout>
                                     <VerticalStackLayout Grid.Column="1" Spacing="3">
-                                        <Label FontSize="12" Text="Bus" TextColor="#6B7280" />
+                                        <Label FontSize="12" Text="Bus" TextColor="#65758B" />
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="16"
+                                            TextColor="#172033"
                                             Text="{Binding VanLicensePlate}" />
                                         <Label
                                             FontSize="13"
                                             Text="{Binding VanLoadingZone}"
-                                            TextColor="#4B5563" />
+                                            TextColor="#65758B" />
                                     </VerticalStackLayout>
                                 </Grid>
                             </Grid>

@@ -6,80 +6,86 @@
     Title="Ritdetails"
     Shell.NavBarIsVisible="False">
 
-    <ScrollView BackgroundColor="#F3F4F6">
+    <ScrollView BackgroundColor="#F5F7FB">
         <VerticalStackLayout Padding="20,18" Spacing="14">
             <Grid ColumnDefinitions="80,*,80" HeightRequest="48">
                 <Button
                     BackgroundColor="#FFFFFF"
-                    BorderColor="#111827"
+                    BorderColor="#172033"
                     BorderWidth="1"
                     Clicked="BackTapped"
                     CornerRadius="8"
                     FontSize="14"
                     Text="Terug"
-                    TextColor="#111827" />
+                    TextColor="#172033" />
                 <Label
                     Grid.Column="1"
                     FontAttributes="Bold"
                     FontSize="28"
                     HorizontalTextAlignment="Center"
                     Text="Ritdetails"
+                    TextColor="#172033"
                     VerticalTextAlignment="Center" />
             </Grid>
 
             <Border
                 Padding="16"
                 BackgroundColor="#FFFFFF"
-                Stroke="#111827"
+                Stroke="#DFE6EF"
                 StrokeShape="RoundRectangle 8">
+                <Border.Shadow>
+                    <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                </Border.Shadow>
                 <VerticalStackLayout Spacing="12">
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
-                            <Label FontSize="13" Text="Afleveradres" TextColor="#6B7280" />
+                            <Label FontAttributes="Bold" FontSize="12" Text="AFLEVERADRES" TextColor="#2F7D6B" />
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="25"
+                                TextColor="#172033"
                                 Text="{Binding Order.Address}" />
                             <Label
                                 FontSize="16"
                                 Text="{Binding Order.FullAddress}"
-                                TextColor="#4B5563" />
+                                TextColor="#65758B" />
                         </VerticalStackLayout>
                         <Border
                             Grid.Column="1"
                             Padding="10,6"
-                            BackgroundColor="#F9FAFB"
-                            Stroke="#D1D5DB"
+                            BackgroundColor="#E5F6EF"
+                            Stroke="#CBEBDD"
                             StrokeShape="RoundRectangle 8">
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="12"
+                                TextColor="#17664F"
                                 Text="{Binding Order.Status}" />
                         </Border>
                     </Grid>
 
-                    <BoxView HeightRequest="1" Color="#E5E7EB" />
+                    <BoxView HeightRequest="1" Color="#DFE6EF" />
 
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                         <VerticalStackLayout Spacing="2">
-                            <Label FontSize="12" Text="Klant" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.CustomerName}" />
+                            <Label FontSize="12" Text="Klant" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.CustomerName}" TextColor="#172033" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="1" Spacing="2">
-                            <Label FontSize="12" Text="Referentie" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.ExternalReference}" />
+                            <Label FontSize="12" Text="Referentie" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.ExternalReference}" TextColor="#172033" />
                         </VerticalStackLayout>
                     </Grid>
 
-                    <Border Padding="12" BackgroundColor="#F9FAFB" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8">
+                    <Border Padding="12" BackgroundColor="#EEF3F8" Stroke="#DFE6EF" StrokeShape="RoundRectangle 8">
                         <VerticalStackLayout Spacing="2">
-                            <Label FontSize="12" Text="Opmerking" TextColor="#6B7280" />
-                            <Label FontSize="15" Text="{Binding Order.Notes}" />
+                            <Label FontSize="12" Text="Opmerking" TextColor="#65758B" />
+                            <Label FontSize="15" Text="{Binding Order.Notes}" TextColor="#172033" />
                         </VerticalStackLayout>
                     </Border>
 
                     <Button
-                        BackgroundColor="#111827"
+                        BackgroundColor="#2F7D6B"
                         Command="{Binding OpenMapsCommand}"
                         CornerRadius="8"
                         FontAttributes="Bold"
@@ -90,40 +96,46 @@
             </Border>
 
             <Border Padding="16" BackgroundColor="#FFFFFF" Stroke="#111827" StrokeShape="RoundRectangle 8">
+                <Border.Shadow>
+                    <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                </Border.Shadow>
                 <VerticalStackLayout Spacing="12">
-                    <Label FontAttributes="Bold" FontSize="20" Text="Businformatie" />
+                    <Label FontAttributes="Bold" FontSize="20" Text="Businformatie" TextColor="#172033" />
                     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
                         <VerticalStackLayout Spacing="2">
-                            <Label FontSize="12" Text="Bus" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanName}" />
+                            <Label FontSize="12" Text="Bus" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanName}" TextColor="#172033" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="1" Spacing="2">
-                            <Label FontSize="12" Text="Kenteken" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanLicensePlate}" />
+                            <Label FontSize="12" Text="Kenteken" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanLicensePlate}" TextColor="#172033" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Row="1" Spacing="2">
-                            <Label FontSize="12" Text="Laadplek" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanLoadingZone}" />
+                            <Label FontSize="12" Text="Laadplek" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanLoadingZone}" TextColor="#172033" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="2">
-                            <Label FontSize="12" Text="Brandstof" TextColor="#6B7280" />
-                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanFuelLevel}" />
+                            <Label FontSize="12" Text="Brandstof" TextColor="#65758B" />
+                            <Label FontAttributes="Bold" FontSize="16" Text="{Binding Order.VanFuelLevel}" TextColor="#A13F16" />
                         </VerticalStackLayout>
                     </Grid>
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="16" BackgroundColor="#FFFFFF" Stroke="#111827" StrokeShape="RoundRectangle 8">
+            <Border Padding="16" BackgroundColor="#FFFFFF" Stroke="#DFE6EF" StrokeShape="RoundRectangle 8">
+                <Border.Shadow>
+                    <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                </Border.Shadow>
                 <VerticalStackLayout Spacing="12">
                     <Grid ColumnDefinitions="*,Auto">
-                        <Label FontAttributes="Bold" FontSize="20" Text="Pakketten controleren" />
+                        <Label FontAttributes="Bold" FontSize="20" Text="Pakketten controleren" TextColor="#172033" />
                         <Border
                             Grid.Column="1"
                             Padding="10,5"
-                            BackgroundColor="#F9FAFB"
-                            Stroke="#D1D5DB"
+                            BackgroundColor="#E5F6EF"
+                            Stroke="#CBEBDD"
                             StrokeShape="RoundRectangle 8">
-                            <Label FontSize="12" Text="{Binding PackageCheckText}" />
+                            <Label FontAttributes="Bold" FontSize="12" Text="{Binding PackageCheckText}" TextColor="#17664F" />
                         </Border>
                     </Grid>
 
@@ -133,8 +145,8 @@
                                 <Border
                                     Margin="0,0,0,8"
                                     Padding="10"
-                                    BackgroundColor="#F9FAFB"
-                                    Stroke="#D1D5DB"
+                                    BackgroundColor="#F8FAFC"
+                                    Stroke="#DFE6EF"
                                     StrokeShape="RoundRectangle 8">
                                     <Grid ColumnDefinitions="42,*">
                                         <CheckBox
@@ -144,6 +156,7 @@
                                             Grid.Column="1"
                                             FontSize="15"
                                             Text="{Binding Description}"
+                                            TextColor="#172033"
                                             VerticalTextAlignment="Center" />
                                     </Grid>
                                 </Border>
@@ -153,10 +166,13 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="16" BackgroundColor="#FFFFFF" Stroke="#111827" StrokeShape="RoundRectangle 8">
+            <Border Padding="16" BackgroundColor="#FFFFFF" Stroke="#DFE6EF" StrokeShape="RoundRectangle 8">
+                <Border.Shadow>
+                    <Shadow Brush="#101E36" Opacity="0.06" Radius="14" Offset="0,8" />
+                </Border.Shadow>
                 <VerticalStackLayout Spacing="12">
-                    <Label FontAttributes="Bold" FontSize="20" Text="Status en bewijs" />
-                    <Border Padding="12,4" BackgroundColor="#F9FAFB" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8">
+                    <Label FontAttributes="Bold" FontSize="20" Text="Status en bewijs" TextColor="#172033" />
+                    <Border Padding="12,4" BackgroundColor="#F8FAFC" Stroke="#DFE6EF" StrokeShape="RoundRectangle 8">
                         <Picker
                             FontSize="16"
                             ItemsSource="{Binding StatusOptions}"
@@ -164,7 +180,7 @@
                     </Border>
 
                     <Button
-                        BackgroundColor="#111827"
+                        BackgroundColor="#2F7D6B"
                         Command="{Binding UpdateStatusCommand}"
                         CornerRadius="8"
                         FontAttributes="Bold"
@@ -175,27 +191,27 @@
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                         <Button
                             BackgroundColor="#FFFFFF"
-                            BorderColor="#111827"
+                            BorderColor="#172033"
                             BorderWidth="1"
                             Command="{Binding GetLocationCommand}"
                             CornerRadius="8"
                             Padding="12"
                             Text="GPS ophalen"
-                            TextColor="#111827" />
+                            TextColor="#172033" />
                         <Button
                             Grid.Column="1"
                             BackgroundColor="#FFFFFF"
-                            BorderColor="#111827"
+                            BorderColor="#172033"
                             BorderWidth="1"
                             Command="{Binding TakePhotoCommand}"
                             CornerRadius="8"
                             Padding="12"
                             Text="Foto maken"
-                            TextColor="#111827" />
+                            TextColor="#172033" />
                     </Grid>
 
-                    <Border Padding="12" BackgroundColor="#F9FAFB" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8">
-                        <Label FontSize="14" Text="{Binding LocationText}" TextColor="#4B5563" />
+                    <Border Padding="12" BackgroundColor="#EEF3F8" Stroke="#DFE6EF" StrokeShape="RoundRectangle 8">
+                        <Label FontSize="14" Text="{Binding LocationText}" TextColor="#65758B" />
                     </Border>
 
                     <Image
