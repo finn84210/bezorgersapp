@@ -132,7 +132,7 @@ public class StoreService
         return true;
     }
 
-    public bool PickOrderForDelivery(int id)
+    public bool SendOrderToDeliveryApp(int id)
     {
         var order = Orders.FirstOrDefault(order => order.Id == id);
         if (order is null)
@@ -140,8 +140,8 @@ public class StoreService
             return false;
         }
 
-        order.IsPickedForDelivery = true;
-        order.Status = "Gepickt voor bezorger";
+        order.IsSentToDeliveryApp = true;
+        order.Status = "Doorgestuurd naar bezorgapp";
         order.AssignedVanName = "Mercedes Sprinter 314";
         order.AssignedVanLicensePlate = "V-842-FN";
         order.AssignedVanLoadingZone = "Laadpoort B";

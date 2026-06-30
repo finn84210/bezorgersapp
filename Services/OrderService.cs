@@ -14,7 +14,7 @@ public class OrderService
     public Task<List<Order>> GetOrdersAsync()
     {
         var orders = _storeService.Orders
-            .Where(order => order.IsPickedForDelivery)
+            .Where(order => order.IsSentToDeliveryApp)
             .Select(ToDeliveryOrder)
             .ToList();
 
@@ -29,7 +29,7 @@ public class OrderService
     public Task<Order?> GetOrderByIdAsync(int id)
     {
         var order = _storeService.Orders
-            .Where(order => order.IsPickedForDelivery)
+            .Where(order => order.IsSentToDeliveryApp)
             .Select(ToDeliveryOrder)
             .FirstOrDefault(order => order.Id == id);
 
@@ -95,9 +95,9 @@ public class OrderService
             PackageSize = $"{order.Packages.Count} pakket(ten)",
             Fee = 4.95m + order.Packages.Count,
             Status = order.Status,
-            Source = "Admin picklijst",
+            Source = "Admin doorgestuurd",
             ExternalReference = $"ADMIN-{order.Id:0000}",
-            DeliveryPerson = "Bezorger",
+            DeliveryPerson = string.Empty,
             SentToDeliveryAt = DateTime.Now,
             ExpectedDeliveryTime = DateTime.Today.AddHours(16),
             Notes = order.Notes,

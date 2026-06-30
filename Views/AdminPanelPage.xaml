@@ -81,7 +81,7 @@
                                 <Label Text="{Binding Address, StringFormat='Adres: {0}'}" />
                                 <Label Text="{Binding TotalPrice, StringFormat='EUR {0:F2}'}" />
                                 <Label Text="{Binding Status, StringFormat='Status: {0}'}" />
-                                <Label Text="{Binding AssignedVanName, StringFormat='Bus: {0}'}" />
+                                <Label Text="{Binding AssignedVanName, StringFormat='Bus voor bezorgapp: {0}'}" />
                                 <HorizontalStackLayout Spacing="8">
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ProcessOrderCommand}"
@@ -90,7 +90,7 @@
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SendOrderCommand}"
                                         CommandParameter="{Binding .}"
-                                        Text="Pick voor bezorger" />
+                                        Text="Doorsturen naar bezorgapp" />
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>

@@ -25,7 +25,7 @@ public class AdminPanelViewModel : BaseViewModel
         ShowProductDetailsCommand = new Command<Product>(ShowProductDetails);
         RemoveProductCommand = new Command<Product>(RemoveProduct);
         ProcessOrderCommand = new Command<CustomerOrder>(order => UpdateOrderStatus(order, "In behandeling"));
-        SendOrderCommand = new Command<CustomerOrder>(PickOrderForDelivery);
+        SendOrderCommand = new Command<CustomerOrder>(SendOrderToDeliveryApp);
     }
 
     public ObservableCollection<Product> Products { get; }
@@ -128,11 +128,11 @@ public class AdminPanelViewModel : BaseViewModel
         }
     }
 
-    private void PickOrderForDelivery(CustomerOrder? order)
+    private void SendOrderToDeliveryApp(CustomerOrder? order)
     {
-        if (order is not null && _storeService.PickOrderForDelivery(order.Id))
+        if (order is not null && _storeService.SendOrderToDeliveryApp(order.Id))
         {
-            Message = "Bestelling gepickt en zichtbaar gezet voor de bezorger.";
+            Message = "Bestelling doorgestuurd naar de bezorgapp.";
             Refresh();
         }
     }

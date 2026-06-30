@@ -12,7 +12,7 @@ public class CustomerOrder
     public string PostalCode { get; set; } = string.Empty;
     public string City { get; set; } = "Amsterdam";
     public string Notes { get; set; } = string.Empty;
-    public bool IsPickedForDelivery { get; set; }
+    public bool IsSentToDeliveryApp { get; set; }
     public string AssignedVanName { get; set; } = string.Empty;
     public string AssignedVanLicensePlate { get; set; } = string.Empty;
     public string AssignedVanLoadingZone { get; set; } = string.Empty;
